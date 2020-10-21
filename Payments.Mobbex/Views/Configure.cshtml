@@ -1,0 +1,88 @@
+﻿@model Nop.Plugin.Payments.Mobbex.Models.SettingsModel
+@inject Nop.Core.IWebHelper webHelper
+@{
+    Layout = "_ConfigurePlugin";
+}
+@await Component.InvokeAsync("StoreScopeConfiguration")
+
+<form asp-controller="PaymentsMobbex" asp-action="Configure" method="post">
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <!--Description Field-->
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="Description_OverrideForStore" asp-input="Description" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="Description" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="Description" />
+                        <span class="text-danger" asp-validation-for="Description"></span>
+                    </div>
+                </div>
+                <!--API Key Field-->
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="API_OverrideForStore" asp-input="API" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="API" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="API" />
+                        <span class="text-danger" asp-validation-for="API"></span>
+                    </div>
+                </div>
+                <!--Access Token Field-->
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="Token_OverrideForStore" asp-input="Token" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="Token" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="Token" />
+                        <span class="text-danger" asp-validation-for="Token"></span>
+                    </div>
+                </div>
+                <!--Test Mode checkbox-->
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="UseTestMode_OverrideForStore" asp-input="UseTestMode" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="UseTestMode" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="UseTestMode" />
+                        <span asp-validation-for="UseTestMode"></span>
+                    </div>
+                </div>
+                <!--Checkout Title Field-->
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="CheckoutTitle_OverrideForStore" asp-input="CheckoutTitle" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="CheckoutTitle" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="CheckoutTitle" />
+                        <span asp-validation-for="CheckoutTitle"></span>
+                    </div>
+                </div>
+                <!--Checkout Logo URL Field-->
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-override-store-checkbox asp-for="CheckoutLogo_OverrideForStore" asp-input="CheckoutLogo" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                        <nop-label asp-for="CheckoutLogo" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="CheckoutLogo" />
+                        <span asp-validation-for="CheckoutLogo">Logo URL must be https</span>
+                    </div>
+                </div>
+
+                <!--Save Button-->
+                <div class="form-group">
+                    <div class="col-md-9 col-md-offset-3">
+                        <input type="submit" class="btn bg-primary" name="save" value="@T("Admin.Common.Save")" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
